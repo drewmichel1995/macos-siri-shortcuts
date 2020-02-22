@@ -13,14 +13,31 @@ def root():
     return render_template('index.json')
    
 
-@app.route('/sleep', methods=['GET'])
-def get_sleep():
+@app.route('/isBetter', methods=['GET'])
+def is_better():
     try:
-        os.system("osascript -e 'tell application \"Finder\" to sleep'")
-        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+        return "<h1>Fuck you, Buddy</h1>", 200, {'ContentType': 'text/hmtl'}
     except IOError:
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
+@app.route('/sleep', methods=['GET'])
+def get_sleep():
+    try:
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/pi/.ssh/id_rsa -l drewmichel drews-mac-mini.local \"./Scripts/sleep.sh\"")
+        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+    except IOError:
+        return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
+
+
+@app.route('/wake', methods=['GET'])
+def get_sleep():
+    try:
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/pi/.ssh/id_rsa -l drewmichel drews-mac-mini.local \"./Scripts/wake.sh\"")
+        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+    except IOError:
+        return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=6969)
+    app.run(debug=True, host='0.0.0.0', port=80)
