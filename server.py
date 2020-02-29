@@ -31,7 +31,7 @@ def get_sleep():
 
 
 @app.route('/wake', methods=['GET'])
-def get_sleep():
+def get_wake():
     try:
         os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/pi/.ssh/id_rsa -l drewmichel drews-mac-mini.local \"./Scripts/wake.sh\"")
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
