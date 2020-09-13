@@ -24,7 +24,7 @@ def is_better():
 @app.route('/sleep', methods=['GET'])
 def get_sleep():
     try:
-        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel drews-mac-mini.lan \"./Scripts/sleep.sh\"")
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel 10.0.0.187 \"./Scripts/sleep.sh\"")
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
     except IOError:
         return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
@@ -33,7 +33,7 @@ def get_sleep():
 @app.route('/wake', methods=['GET'])
 def get_wake():
     try:
-        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel drews-mac-mini.lan \"./Scripts/wake.sh\"")
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel 10.0.0.187 \"./Scripts/wake.sh\"")
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
     except IOError:
         return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
@@ -42,7 +42,7 @@ def get_wake():
 @app.route('/mute', methods=['GET'])
 def get_mute():
     try:
-        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel drews-mac-mini.lan \"./Scripts/mute.sh\"")
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel 10.0.0.187 \"./Scripts/mute.sh\"")
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
     except IOError:
         return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
@@ -51,7 +51,7 @@ def get_mute():
 @app.route('/screensaver', methods=['GET'])
 def get_screensaver():
     try:
-        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel drews-mac-mini.lan \"./Scripts/screensaver.sh\"")
+        os.system("sudo ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/id_rsa -l drewmichel 10.0.0.187 \"./Scripts/screensaver.sh\"")
         return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
     except IOError:
         return json.dumps({'success': False}), 500, {'ContentType': 'application/json'}
